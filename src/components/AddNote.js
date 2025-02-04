@@ -5,10 +5,11 @@ const AddNote = () => {
     const context = useContext(NoteContext);
     const {addNote} = context;
 
-    const [note, setNote] = useState({title:"", description:  "", tag:"default"})
+    const [note, setNote] = useState({title:"", description:  "", tag:""})
     const handleClick = (e) =>{
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
+        setNote({title:"", description:  "", tag:""})
     }
 
     const onChange = (e) =>{
@@ -20,17 +21,19 @@ const AddNote = () => {
     <form>
         <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" name='title' id="title" aria-describedby="emailHelp" onChange={onChange} />
+            <input type="text" className="form-control" value={note.title} name='title' id="title" aria-describedby="emailHelp" onChange={onChange} minLength={5} required />
                 
         </div>
         <div className="mb-3">
             <label htmlFor="desc" className="form-label">Description</label>
-            <input type="text" className="form-control" name='description' id="description" onChange={onChange} />
+            <input type="text" className="form-control" value={note.description} name='description' id="description" onChange={onChange} minLength={5} required />
         </div>
-        <div className="mb-3 form-check">
-            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-        </div>
+
+        <div className="mb-3">
+            <label htmlFor="tag" className="form-label">Tag</label>
+            <input type="text" className="form-control" value={note.tag} name='tag' id="tag" onChange={onChange} />
+        </div>   
+        
         <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
     </form>
     

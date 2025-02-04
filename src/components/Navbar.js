@@ -1,13 +1,10 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Link, useLocation} from 'react-router-dom';
 
 
 
 const Navbar = () => {
     let location = useLocation()
-    useEffect(() => {
-      console.log(location);
-      }, [location]);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,8 +25,10 @@ const Navbar = () => {
                        
                     </ul>
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        
+                        <Link className="btn btn-success mx-3"  to="/Login" role="button">Login</Link>
+
+                        <Link className="btn btn-primary"  to="/signup" role="button">Signup</Link>
                     </form>
                 </div>
             </div>
